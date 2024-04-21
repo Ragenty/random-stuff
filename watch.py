@@ -6,10 +6,18 @@ from datetime import datetime, timedelta
 MOON_CYCLE = 29.5305992 # Moon cycle in days
 # Sample values for each month of the year
 EQUATION_OF_TIME_DAYS = [
-    (-3.0, 14),  # January
-    (7.0, -6),   # February
-    (17.0, -14), # March
-    # Add values for the remaining months here...
+    (-3.0, 14),    # January
+    (7.0, -6),     # February
+    (17.0, -14),   # March
+    (25.0, -20),   # April
+    (31.0, -24),   # May
+    (36.0, -26),   # June
+    (38.0, -25),   # July
+    (34.0, -21),   # August
+    (28.0, -15),   # September
+    (20.0, -9),    # October
+    (11.0, -2),    # November
+    (3.0, 7),      # December
 ]
 LEAP_YEAR_CYCLE = 4 # Years
 
