@@ -4,7 +4,13 @@ from datetime import datetime, timedelta
 
 # Constants for the simulation
 MOON_CYCLE = 29.5305992 # Moon cycle in days
-EQUATION_OF_TIME_DAYS = [(-3.0, 14), (7.0, -6), (17.0, -14)] # Sample values for each quarter of the year
+# Sample values for each month of the year
+EQUATION_OF_TIME_DAYS = [
+    (-3.0, 14),  # January
+    (7.0, -6),   # February
+    (17.0, -14), # March
+    # Add values for the remaining months here...
+]
 LEAP_YEAR_CYCLE = 4 # Years
 
 # Global variables for the simulation
@@ -41,10 +47,12 @@ def calculate_moon_phase(current_date):
 
 def calculate_equation_of_time(current_date):
     day_of_year = current_date.timetuple().tm_yday
-    month_index = (day_of_year // 30) % 12
+    month_index = (day_of_year - 1) // 30  # Calculate the month index based on day of the year
+    month_index %= len(EQUATION_OF_TIME_DAYS)  # Ensure month_index wraps around if it exceeds the length of the list
     eot = EQUATION_OF_TIME_DAYS[month_index]
     return f"{eot[0]} minutes {eot[1]} seconds"
 
+    
 def is_leap_year(year):
     return year % LEAP_YEAR_CYCLE == 0 and (year % 100 != 0 or year % 400 == 0)
 
