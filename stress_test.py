@@ -1,4 +1,3 @@
-# Change the 9 to set intensity:
 import multiprocessing
 import os
 import time
