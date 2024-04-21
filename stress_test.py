@@ -4,18 +4,18 @@ import time
 import platform
 import re
 
-def cpu_bound_task():
+def cpu_bound_task(difficulty):
     """Simulates a CPU-bound task."""
     result = 0
-    for _ in range(10**9): # Change the 9 to set intensity I advise, don't go above 9: Completed 9 in 149.20 with 12 cores and 24 threads
+    for _ in range(10**difficulty):
         result += 1
     return result
 
-def stress_test(num_processes):
+def stress_test(num_processes, difficulty):
     """Runs a CPU stress test by spawning multiple processes."""
     processes = []
     for _ in range(num_processes):
-        process = multiprocessing.Process(target=cpu_bound_task)
+        process = multiprocessing.Process(target=cpu_bound_task, args=(difficulty,))
         processes.append(process)
         process.start()
     
@@ -44,10 +44,17 @@ if __name__ == "__main__":
     num_threads = num_cores * 2
     print(f"Detected {num_cores} cores and {num_threads} threads.")
     
+    # User input for difficulty level
+    difficulty = int(input("Enter the difficulty level (recommended between 7 and 9): "))
+    if difficulty < 7:
+        print("Warning: Difficulty level below recommended range.")
+    elif difficulty > 9:
+        print("Warning: Difficulty level above recommended range.")
+    
     # Start CPU stress test
     print("Starting CPU stress test...")
     start_time = time.time()
-    stress_test(num_threads)
+    stress_test(num_threads, difficulty)
     end_time = time.time()
     
     # Calculate and print the duration of the stress test
