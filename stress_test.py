@@ -1,3 +1,4 @@
+# Change the 9 to set intensity:
 import multiprocessing
 import os
 import time
@@ -7,7 +8,7 @@ import re
 def cpu_bound_task():
     """Simulates a CPU-bound task."""
     result = 0
-    for _ in range(10**9): 
+    for _ in range(10**9): # Change the 9 to set intensity: Completed 9 in 149.20 with 12 cores and 24 threads
         result += 1
     return result
 
